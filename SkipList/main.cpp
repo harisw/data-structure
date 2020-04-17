@@ -24,6 +24,9 @@ public:
     {
         list_size = 0;
         high_lv = 0;
+        skip_node new_node;
+        new_node.data = NULL;
+        head = new_node;
     }
     skip_node searchKey(int n)
     {
@@ -65,7 +68,7 @@ public:
         new_node.left = &target;
         new_node.right = target.right;
 
-        target.right = *new_node;
+        target.right = &new_node;
 
         int high = 1;
         while(coinFlip())
@@ -76,17 +79,17 @@ public:
                 high_lv++;
                 //CREATE NEW LEVEL
                 skip_node new_top = head;
-                new_top.bot = head;
-                new_top.right = *new_node;
+                new_top.bot = &head;
+                new_top.right = &new_node;
                 head = new_top;
             } else
             {
                 while(target.top == nullptr)
-                    target = target.left;
+                    target = *target.left;
                 skip_node new_top;
-                new_top.bot = *new_node;
+                new_top.bot = &new_node;
                 new_top.right = target.right;
-                target.right = *new_top;
+                target.right = &new_top;
             }
         }
     }
@@ -95,10 +98,10 @@ public:
         skip_node temp = head;
         while(head.bot != nullptr)
         {
-            while(temp.next != nullptr)
+            while(temp.right != nullptr)
             {
                 cout << temp.data << endl;
-                temp = temp.next;
+                temp = *temp.right;
             }
         }
         return;
@@ -113,7 +116,8 @@ int main()
 
     while(getline(file, line)) {
         my_list.insertKey(stoi(line));
+        cout << line << endl;
     }
-    my_list.printAll();
+    //my_list.printAll();
     return 0;
 }
