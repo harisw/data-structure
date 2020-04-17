@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1587101053 source:c:\users\dblab\documents\skiplist\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+
