@@ -4,109 +4,49 @@
 
 using namespace std;
 
-struct skip_node
+struct node
 {
     int data, lv;
-    struct skip_node *left;
-    struct skip_node *right;
-    struct skip_node *top;
-    struct skip_node *bot;
-
+    node *right;
+    node *bot;
 };
 
-class skip_list
+struct skiplist
 {
-private:
-    skip_node head, *tail;
-    int list_size, high_lv;
-public:
-    skip_list()
-    {
-        list_size = 0;
-        high_lv = 0;
-        skip_node new_node;
-        new_node.data = NULL;
-        head = new_node;
-    }
-    skip_node searchKey(int n)
-    {
-        skip_node res = head;
-        skip_node temp;
-        while(res.bot != nullptr)
-        {
-            res = *res.bot;
-            temp = *res.right;
-            while( n >= temp.data)
-            {
-                temp = *temp.right;
-            }
-            res = temp;
-        }
-        return res;
-    }
-
-    int coinFlip()
-    {
-        return rand()%2;
-    }
-
-    void insertKey(int n)
-    {
-        if(head.data == NULL)
-        {
-            skip_node temp;
-            temp.bot = nullptr;
-            temp.right = nullptr;
-            temp.top = nullptr;
-            temp.data = n;
-            head = temp;
-            return;
-        }
-        skip_node target = searchKey(n);
-        skip_node new_node;
-        new_node.data = n;
-        new_node.left = &target;
-        new_node.right = target.right;
-
-        target.right = &new_node;
-
-        int high = 1;
-        while(coinFlip())
-        {
-            high++;
-            if(high >= high_lv)
-            {
-                high_lv++;
-                //CREATE NEW LEVEL
-                skip_node new_top = head;
-                new_top.bot = &head;
-                new_top.right = &new_node;
-                head = new_top;
-            } else
-            {
-                while(target.top == nullptr)
-                    target = *target.left;
-                skip_node new_top;
-                new_top.bot = &new_node;
-                new_top.right = target.right;
-                target.right = &new_top;
-            }
-        }
-    }
-    void printAll()
-    {
-        skip_node temp = head;
-        while(head.bot != nullptr)
-        {
-            while(temp.right != nullptr)
-            {
-                cout << temp.data << endl;
-                temp = *temp.right;
-            }
-        }
-        return;
-    }
+    node *header;
+    int value;
+    int max_lev;
+    void display();
+    bool searchVal(int n);
+    void insertVal(int elem, node root, int h, int level);
+    void deleteVal(int n);
 };
+
+void insertVal(int elem, node root, int h, int level)
+{
+    if(*root.right.data < elem)
+    {
+        return insertVal(elem, &root.right, h, level);
+
+    } else
+    {
+        if(level == 0)
+        {
+            node new_node;
+            new_node.right = root.right;
+            root.right = &new_node;
+        } else
+        {
+            if(level <= h)
+            {
+                node new_node;
+                new_node.right = root.right;
+                root.right = &new_node;
+            }
+            return insertVal(elem, *root.bot, h, level-1);
+        }
+    }
+}
 
 int main()
 {
