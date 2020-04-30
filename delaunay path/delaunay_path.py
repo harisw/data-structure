@@ -75,8 +75,6 @@ for filetarget in filetargets:
     with open(fileout, "a") as myfile:
         p1 = len(all_point)-2
         q1 = len(all_point)-1
-        print(p1)
-        print(q1)
         for p in tri.simplices :
             edges = []
             edges.append([p[0],p[1]])
