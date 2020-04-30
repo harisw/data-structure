@@ -1,0 +1,6 @@
+4 9vertex [9]
+8 2Outside []
+7 7face [[4 5 1]]
+12 5Outside []
+1 10Outside []
+5 7face [[4 9 5]]
