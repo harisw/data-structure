@@ -139,8 +139,8 @@ int main()
         ss.insert_element(stoi(line));
     }
      auto stop = high_resolution_clock::now();
-     auto duration = duration_cast<milliseconds>(stop - start);
-     cout << endl << "Operation completed on " << duration.count() << " milliseconds Execution" << endl;
+     auto duration = duration_cast<microseconds>(stop - start);
+     cout << endl << "Operation completed on " << duration.count() << " microseconds Execution" << endl;
     cout << "Data Seeding completed..." << endl;
     while (1)
     {
@@ -161,8 +161,8 @@ int main()
              auto start = high_resolution_clock::now();
              ss.insert_element(n);
              auto stop = high_resolution_clock::now();
-             auto duration = duration_cast<milliseconds>(stop - start);
-             cout<<endl<<"Operation completed on "<<duration.count()<<" milliseconds Execution"<<endl;
+             auto duration = duration_cast<microseconds>(stop - start);
+             cout<<endl<<"Operation completed on "<<duration.count()<<" microseconds Execution"<<endl;
              break;
             }
         case 2:
@@ -177,8 +177,8 @@ int main()
              }
              ss.delete_element(n);
               auto stop = high_resolution_clock::now();
-             auto duration = duration_cast<milliseconds>(stop - start);
-             cout<<endl<<"Operation completed on "<<duration.count()<<" milliseconds Execution"<<endl;
+             auto duration = duration_cast<microseconds>(stop - start);
+             cout<<endl<<"Operation completed on "<<duration.count()<<" microseconds Execution"<<endl;
              break;
         }
         case 3:
@@ -191,8 +191,8 @@ int main()
              else
                  cout<<"Element not found"<<endl;
                           auto stop = high_resolution_clock::now();
-             auto duration = duration_cast<milliseconds>(stop - start);
-             cout<<endl<<"Operation completed on "<<duration.count()<<" milliseconds Execution"<<endl;
+             auto duration = duration_cast<microseconds>(stop - start);
+             cout<<endl<<"Operation completed on "<<duration.count()<<" microseconds Execution"<<endl;
              break;
         }
         case 4:
@@ -201,8 +201,8 @@ int main()
              auto start = high_resolution_clock::now();
              ss.display();
              auto stop = high_resolution_clock::now();
-             auto duration = duration_cast<milliseconds>(stop - start);
-             cout<<endl<<"Operation completed on "<<duration.count()<<" milliseconds Execution"<<endl;
+             auto duration = duration_cast<microseconds>(stop - start);
+             cout<<endl<<"Operation completed on "<<duration.count()<<" microseconds Execution"<<endl;
              break;
         }
         case 5:

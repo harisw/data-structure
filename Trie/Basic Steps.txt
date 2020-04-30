@@ -1,0 +1,16 @@
+INSERTION
+1. Traverse the trie according to the key used
+2. If we encounter a null ref on the letter, then create new one
+3. On the last letter, insert the necessary value in the node
+
+SEARCHING
+1. traverse the trie
+2. Get the value in the last letter node
+
+
+DELETING
+1. Traverse the trie until the last letter
+2. Check if the references are null, if yes delete the node ( repeat until the references is not null).
+	if no, it's done
+
+
