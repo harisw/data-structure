@@ -6,11 +6,35 @@ import random as rand
 from scipy.spatial import Delaunay
 
 colors = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow']
+x = 0
+y = 1
 
-def split_line(line):
-    return line.split(" ")
-
-splitter_func = np.vectorize(split_line)
+def orientation(p, q, r): 
+    val = (float(all_point[q,y] - all_point[p,y]) * (all_point[r,x] - all_point[q,x])) - (float(all_point[q,x] - all_point[p,x]) * (all_point[r,y] - all_point[q,y])) 
+    if (val > 0):           
+        # Clockwise orientation 
+        return 1
+    elif (val < 0): 
+        # Counterclockwise orientation 
+        return 2
+    else: 
+        # Colinear orientation 
+        return 0
+  
+def doIntersect(p1,q1,p2,q2):
+    # Find the 4 orientations required for  
+    # the general and special cases 
+    o1 = orientation(p1, q1, p2) 
+    o2 = orientation(p1, q1, q2)
+    o3 = orientation(p2, q2, p1) 
+    o4 = orientation(p2, q2, q1) 
+  
+    if(o1 == 0 or o2 == 0 or o3 == 0 or o4 == 0):
+        return False
+    if ((o1 != o2) and (o3 != o4)): 
+        return True 
+    
+    return False
 
 filetargets = ['points1', 'HARI SETIAWAN_dt01', 'HARI SETIAWAN_dt02']
 
