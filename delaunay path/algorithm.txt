@@ -1,0 +1,4 @@
+For each triangle:
+	for each edges:
+		if crossing with path:
+			give color
